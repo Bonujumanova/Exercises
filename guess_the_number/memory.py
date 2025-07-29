@@ -3,13 +3,12 @@ import random
 hidden_number = random.randint(1, 100)
 
 number_of_attempts: int = 10
-flag = False
 i = 1
 
 while i < 11:
     try:
         user_num: int = int(input("Введите число: "))
-    except:
+    except ValueError:
          print("Введите числовое значение!")
     else:
         if user_num < hidden_number:

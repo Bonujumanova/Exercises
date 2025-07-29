@@ -10,13 +10,18 @@ while True:
         number_2: int = int(input("Введите конец диапазона загаданного числа"))
 
         if number_1 == number_2:
-            raise ValueError("Числа не должны быть равны!")
+            raise TypeError()
 
     except ValueError:
         print("Введите целое натуральное число!!!")
 
+
+    except TypeError:
+        print("Числа не должны быть равны!")
+
+
     else:
-        start_num_1, end_num_1 = sorted([number_1, number_2])
+        start_num_1, end_num_1 = map(int, sorted([number_1, number_2]))
         break
 
 
@@ -32,24 +37,26 @@ while i != 11:
 
     try:
         user_input: str = input("Загаданное число ")
-        if program_answer == start_num or program_answer == end_num:
+        if program_answer == start_num_1 or program_answer == end_num_1:
             raise ValueError()
 
-
-    except:
-
-        print("Играйте по правилам!")
+    except ValueError:
+        print("Ошибка! Похоже, вы дали противоречивые ответы.")
+        break
     else:
-        print(program_answer)
 
-        if user_input == "больше":
+        if user_input == "больше": # and program_answer != start_num_1:
             start_num = program_answer
-            program_answer = randint(start_num, end_num)
-        elif user_input == "меньше":
+            program_answer = randint(start_num, end_num_1)
+        elif user_input == "меньше": # and program_answer != end_num_1:
             end_num = program_answer
-            program_answer = randint(start_num, end_num)
+            program_answer = randint(start_num_1, end_num)
         elif user_input == "угадал":
-            print(f"Я угадал ! Загаданное число {program_answer}. Количество попыток: {i}")
+            print(f"Я угадал! Загаданное число {program_answer}. Количество попыток: {i}")
+            break
 
         i += 1
+        print(program_answer)
 
+else:
+    print("К сожалению, вы не справились!")
