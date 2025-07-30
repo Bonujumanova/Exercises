@@ -13,5 +13,3 @@ def triangle_area(a, b, c):
 a: int = 5
 b: int = 7
 c: int = 9
-triangle_perimeter(a, b, c)
-print(triangle_area(a, b, c))
