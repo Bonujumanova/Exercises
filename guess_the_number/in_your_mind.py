@@ -9,20 +9,16 @@ while True:
         number_1:int = int(input("Введите начало диапазона загаданного числа"))
         number_2: int = int(input("Введите конец диапазона загаданного числа"))
 
-        if number_1 == number_2:
-            raise TypeError()
-
     except ValueError:
         print("Введите целое натуральное число!!!")
 
-
-    except TypeError:
-        print("Числа не должны быть равны!")
-
-
     else:
-        start_num_1, end_num_1 = map(int, sorted([number_1, number_2]))
-        break
+        if number_1 == number_2:
+            print("Числа не должны быть равны!")
+
+        else:
+            start_num_1, end_num_1 = min(number_1, number_2), max(number_1, number_2)
+            break
 
 
 nums = range(start_num_1, end_num_1)
