@@ -18,3 +18,7 @@
 ## figures
 
 * [Создать пакет с модулями](.figures) | [Условие задания](https://smartiqa.ru/python-workbook/import)
+
+## Парольнадзор
+
+* [1. Парольнадзор](.password_control) | [Условие задания](https://t.me/ne_bon_ju/8)
