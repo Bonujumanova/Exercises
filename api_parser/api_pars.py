@@ -6,7 +6,7 @@ from pprint import pprint
 pokemons_url: str = "https://www.pokemon.com/us/pokedex"
 pokemons_response = requests.get(pokemons_url)
 soup = BeautifulSoup(pokemons_response.text, features="html.parser")
-pokemons = soup.find_all("div", class_="container pokedex")
+pokemons = soup.find_all("ul", class_="results")
 print(pokemons)
 if pokemons:
     for li in pokemons:
