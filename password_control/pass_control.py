@@ -7,7 +7,9 @@ error_message = [
     "Пароль должен заканчиваться только латинской буквой или цифрой",
     "Минимальная длина пароля — 12 символов, максимальная — 32 символа"
 ]
-
+    
+min_length: int = 12
+max_length: int = 32
 print(*error_message, sep="\n", end="\n\n")
 underscore: str = "_"
 letters: str = string.ascii_letters
@@ -18,28 +20,25 @@ errors: list[str] = []
 while True:
     user_password: str = input("Введите пароль: ")
 
+    if user_password[0] not in string.ascii_uppercase:
+        errors.append("Пароль должен начинаться с заглавной буквы")
+
     for digit in string.digits:
         if digit in user_password:
             break
     else:
-        print("Пароль должен содержать цыфру(ы)")
-        continue
+        errors.append("Пароль должен содержать цыфру(ы)")
 
-    # TODO: Магические числа вынести в константы
-    if not (12 <= len(user_password) <= 32):
+    if not (min_length <= len(user_password) <= max_length):
         errors.append("Длина пароля не соответствует требованиям")
-
-    if user_password[0] not in string.ascii_uppercase:
-        print("Пароль должен начинаться с заглавной буквы")
-        continue
 
     if user_password[-1] not in (letters + string.digits):
         # if not user_password.endswith(tuple(letters + string.digits)):
-        print("Пароль должен заканчиваться только латинской буквой или цифрой")
-        continue
+        errors.append("Пароль должен заканчиваться только латинской буквой или цифрой")
+
 
     if underscore not in user_password:
-        print("Пароль должен содержать символ нижнего подчеркивания")
+        errors.append("Пароль должен содержать символ нижнего подчеркивания")
 
     if not errors:
         print("Пароль принят!")
@@ -48,4 +47,4 @@ while True:
         break
     else:
         print("Пароль не соответствует требованиям!", end="\n")
-        print("\n".join(errors))
+        print("\n".join(errors), "\n\n")
