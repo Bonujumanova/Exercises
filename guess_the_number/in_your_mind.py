@@ -20,8 +20,6 @@ while True:
 
     start, end = int(start), int(end)
     start_num_1, end_num_1 = min(start, end), max(start, end)
-    min_num: int = start
-    max_num: int = end
     break
 
 nums: range = range(start_num_1, end_num_1)
