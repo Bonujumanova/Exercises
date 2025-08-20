@@ -44,7 +44,7 @@ while True:
         print("Пароль принят!")
         with open("valid_passwords.txt", "a", encoding="UTF-8") as f:
             f.write(user_password + "\n")
-        break
+
     else:
         print("Пароль не соответствует требованиям!", end="\n")
         print("\n".join(errors), "\n\n")
