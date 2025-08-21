@@ -10,7 +10,7 @@ error_message = [
 print(*error_message, sep="\n", end="\n\n")
 
 
-def find_digit(password):
+def has_digit(password):
     for digit in string.digits:
         if digit in password:
             return True
@@ -57,7 +57,7 @@ def main():
     max_length: int = 32
 
     user_password = get_password()
-    a = find_digit(user_password)
+    a = has_digit(user_password)
     b = find_upper_letter(user_password)
     c = find_length(user_password, min_length, max_length)
     d = has_underscore(user_password)
@@ -72,12 +72,8 @@ def main():
     return False
 
 
-flag: bool = False
 while True:
-
-
     result = main()
-
 
     if result:
         break
