@@ -86,11 +86,13 @@ else:
         some_speak: str = ""
         for char in message:
             for key, values in some_language_char_mapping.items():
+
                 if char in values:
+                    print(char, values, key)
                     some_speak += key
-                    print(key, end="")
             else:
                 some_speak += char
+                continue
         return some_speak
 
 
