@@ -14,14 +14,14 @@ for col in range(len(data)):
 
 
 def show_table(char: str, player_choice: int) -> list:
-    # if char == "O":
-    #     color = Fore.YELLOW
-    # else:
-    #     color = Fore.GREEN
+    if char == "O":
+        color = Fore.YELLOW
+    else:
+        color = Fore.GREEN
     for col in range(len(data)):
         for row in range(len(data[col])):
             if data[col][row] == player_choice:
-                data[col][row] = char
+                data[col][row] = color + char + Back.RESET
             if row != 2:
                 print(data[col][row], "|", end=" ")
             else:
@@ -32,23 +32,30 @@ def show_table(char: str, player_choice: int) -> list:
     return data
 
 
-def check_winner(changed_data: list[list]) -> bool:
-    players: dict = {"X": "player_1_name", "O": "player_2_name"}
+def check_winner(changed_data: list[list], first_player_name, second_player_name) -> bool:
+    players_name: dict = {"X": first_player_name, "O": second_player_name}
 
     for col in range(len(changed_data)):
         if all(changed_data[col][0] == changed_data[col][row] for row in range(len(changed_data[col]))):
-            print(f"Вы победили {players.get(changed_data[col][0])}")
+            print(f"Вы победили {players_name.get(changed_data[col][0])}")
+            print(changed_data[col][0])
+
             return True
         for row in range(col, col + 1):
             if changed_data[0][row] ==  changed_data[1][row] == changed_data[2][row]:
-                print(f"Победил игрок: {players.get(changed_data[col][row])}, '2'")
+                print(changed_data[0][row])
+                print(f"Победил игрок: {players_name.get(changed_data[0][row])}, '2'")
                 return True
 
         if changed_data[col][0] == changed_data[col][1] == changed_data[col][2]:
-            print(f"Победил игрок: {players.get(changed_data[col][1])} '3'")
+            print(f"Победил игрок: {players_name.get(changed_data[col][1])} '3'")
+            print(changed_data[col][1])
+
             return True
         elif changed_data[col][2] == changed_data[col][1] == changed_data[col][0]:
-            print(f"Победил игрок: {players.get(changed_data[col][1])} '4'")
+            print(f"Победил игрок: {players_name.get(changed_data[col][1])} '4'")
+            print(changed_data[0][2])
+
             return True
 
     if all(all((str(j).isalpha() for j in i)) for i in data):
@@ -59,9 +66,6 @@ def check_winner(changed_data: list[list]) -> bool:
 
 
 def get_players_input(first: bool, second: bool, entered_numbers, players_name):
-
-    symbol: str = ""
-    player: int = 0
 
     if second:
         while True:
@@ -114,7 +118,7 @@ def main():
 
         entered_number, symbol, *bools = get_players_input(first, second, entered_numbers, players_name)
         table = show_table(symbol, entered_number)
-        res = check_winner(table)
+        res = check_winner(table, first_player_name, second_player_name)
         if res:
             break
         first = bools[0]
